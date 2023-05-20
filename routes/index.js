@@ -21,4 +21,7 @@ router.use('/forgot-password',require('./forgotPassword'));
 //admin
 router.use('/admin',require('./admin'))
 
+//category
+router.use('/category',require('./category'));
+
 module.exports = router;

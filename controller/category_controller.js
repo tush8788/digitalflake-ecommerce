@@ -59,3 +59,25 @@ module.exports.delete = async function(req,res){
         return res.redirect('back');
     }
 }
+
+//update status of category
+module.exports.updateStatus = async function(req,res){
+    try{
+        let {id,status}=req.query;
+
+        if(status=="Active"){
+            status = "Inactive"
+        }
+        else{
+            status = "Active"
+        }
+
+        await CategoryDB.findByIdAndUpdate(id,{status:status});
+        console.log("status update successfully");
+        return res.redirect('back');
+    }
+    catch(err){
+        console.log(err);
+        return res.redirect('back');
+    }
+}

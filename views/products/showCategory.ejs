@@ -8,6 +8,7 @@
             <li>disciption: <%=category.discription%></li>
             <li>status: <%=category.status%></li>
             <li><a href="/category/delete?id=<%=category._id%>">X</a></li>
+            <li><a href="/category/update-status?id=<%=category._id%>&status=<%=category.status%>">update status</a></li>
         </ul>
     <%}%>
 </div>

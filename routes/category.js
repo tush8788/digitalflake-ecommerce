@@ -14,4 +14,7 @@ router.post('/create',passport.checkAuthenticationUser,categoryController.create
 //delete 
 router.get('/delete',passport.checkAuthenticationUser,categoryController.delete);
 
+//update status 
+router.get('/update-status',passport.checkAuthenticationUser,categoryController.updateStatus);
+
 module.exports = router;

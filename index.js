@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const expressLayout = require('express-ejs-layouts');
 const db = require('./config/mongoose');
+const passport = require('passport');
+const localStategy = require('./config/passport-local-stategy');
 const port = process.env.port|| 8000;
 
 const app = express();

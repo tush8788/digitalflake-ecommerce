@@ -33,12 +33,5 @@ module.exports.createAdmin =async function(req,res){
 
 //create session
 module.exports.createSession =async function(req,res){
-    try{
-        console.log(req.body);
-        
-    }
-    catch(err){
-        console.log(err);
-        return res.redirect('back');
-    }
+    return res.redirect('/');
 }

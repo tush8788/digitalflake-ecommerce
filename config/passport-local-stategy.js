@@ -39,3 +39,19 @@ passport.deserializeUser(async (id,done)=>{
         return done(err);
     }
 })
+
+//check admin is login or not 
+passport.checkAuthenticationUser = function(req,res,next){
+    if(req.user){
+        return next();
+    }
+    return res.redirect('/signin');
+}
+
+//set authenticated user in res
+passport.setAuthenticatedUser = function(req,res,next){
+    if(req.user){
+        res.locals.user=req.user;
+    }
+    next();
+}

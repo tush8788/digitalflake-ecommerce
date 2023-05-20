@@ -11,4 +11,7 @@ router.get('/create',passport.checkAuthenticationUser,categoryController.createC
 //create 
 router.post('/create',passport.checkAuthenticationUser,categoryController.create);
 
+//delete 
+router.get('/delete',passport.checkAuthenticationUser,categoryController.delete);
+
 module.exports = router;

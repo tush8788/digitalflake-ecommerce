@@ -44,3 +44,18 @@ module.exports.create = async function(req,res){
         return res.redirect('back');
     }
 }
+
+//delete category
+module.exports.delete = async function(req,res){
+    try{
+        // console.log(req.query);
+        let {id} = req.query;
+        await CategoryDB.findByIdAndDelete(id);
+        console.log('category delete successfully')
+        return res.redirect('back');
+    }
+    catch(err){
+        console.log(err);
+        return res.redirect('back');
+    }
+}

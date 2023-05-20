@@ -13,4 +13,10 @@ router.post('/create-session',passport.authenticate('local',{failureRedirect:'/s
 //forgot password link
 router.post('/forgot-password',authController.forgotPasswordLinkGen);
 
+//reset password 
+router.get('/reset-password',authController.resetPasswordPage);
+
+//update password
+router.post('/update-password',authController.updatePassword);
+
 module.exports = router;

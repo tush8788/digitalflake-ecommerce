@@ -10,7 +10,8 @@ passport.use(new localStategy({
         let admin = await AdminDB.findOne({email:email});
 
         if(!admin || admin.password != password){
-            console.log("invaild email or password")
+            req.flash('error',"invaild email or password");
+            // console.log("invaild email or password")
             return done(null,false);
         }
 

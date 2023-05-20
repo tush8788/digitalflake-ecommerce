@@ -14,6 +14,7 @@ module.exports.showProduct = async function(req,res){
     }
     catch(err){
         console.log(err);
+        req.flash('error',"Internal server error")
         return res.redirect('back');
     }
 }
@@ -30,7 +31,9 @@ module.exports.createProductPage = async function(req,res){
         })
     }
     catch(err){
-
+        req.flash('error',"Internal server error")
+        console.log(err);
+        return res.redirect('back');
     }
 }
 
@@ -50,18 +53,19 @@ module.exports.createProduct = async function(req,res){
             
             //if product already in db then just back
             if(product){
-                console.log("Product already exist in DB");
+                req.flash('error',"Product already exist in DB")
                 return res.redirect('back');
             }
             product = await ProductDB.create(req.body);
         })
 
-        console.log("Product create successfully");
-        
+        req.flash('success',"Product create successfully")
+        // console.log("Product create successfully");
         return res.redirect('back');
     }
     catch(err){
         console.log(err);
+        req.flash('error',"Internal server error")
         return res.redirect('back');
     }
 }
@@ -76,7 +80,8 @@ module.exports.deleteProduct = async function(req,res){
         
         //if product not found
         if(!product){
-            console.log('product not found in DB');
+            req.flash('error',"product not found in DB")
+            // console.log('product not found in DB');
             return res.redirect('back');
         }
 
@@ -90,12 +95,13 @@ module.exports.deleteProduct = async function(req,res){
         }
         //delete product
         await product.deleteOne();
-        
-        console.log("Product delete successfully");
+        req.flash('success',"Product delete successfully")
+        // console.log("Product delete successfully");
         return res.redirect('back');
     }
     catch(err){
         console.log(err);
+        req.flash('error',"Internal server error")
         return res.redirect('back');
     }
 }
@@ -114,11 +120,13 @@ module.exports.updateProductStaus = async function(req,res){
         }
 
         await ProductDB.findByIdAndUpdate(id,{status:status});
-        console.log('Product status update');
+        req.flash('success',"Product status update")
+        // console.log('Product status update');
         return res.redirect('back');
     }
     catch(err){
         console.log(err);
+        req.flash('error',"Internal server error")
         return res.redirect('back');
     }
 }

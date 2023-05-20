@@ -10,7 +10,9 @@ module.exports.showCategory = async function(req,res){
         })
     }
     catch(err){
-
+        console.log(err);
+        req.flash('error','Internal server error');
+        return res.redirect('back');
     }
 }
 
@@ -32,15 +34,18 @@ module.exports.create = async function(req,res){
 
         if(!category){
             category = await CategoryDB.create(req.body);
-            console.log('category create successfully');
+            req.flash('success','category create successfully');
+            // console.log('category create successfully');
             return res.redirect('back');
         }
 
-        console.log('category exist in DB');
+        req.flash('error','category exist in DB');
+        // console.log('category exist in DB');
         return res.redirect('back');
     }
     catch(err){
         console.log(err);
+        req.flash('error','Internal server error');
         return res.redirect('back');
     }
 }
@@ -51,11 +56,13 @@ module.exports.delete = async function(req,res){
         // console.log(req.query);
         let {id} = req.query;
         await CategoryDB.findByIdAndDelete(id);
-        console.log('category delete successfully')
+        req.flash('success','category delete successfully');
+        // console.log('category delete successfully')
         return res.redirect('back');
     }
     catch(err){
         console.log(err);
+        req.flash('error','Internal server error');
         return res.redirect('back');
     }
 }
@@ -73,11 +80,13 @@ module.exports.updateStatus = async function(req,res){
         }
 
         await CategoryDB.findByIdAndUpdate(id,{status:status});
-        console.log("status update successfully");
+        req.flash('success','status update successfully');
+        // console.log("status update successfully");
         return res.redirect('back');
     }
     catch(err){
         console.log(err);
+        req.flash('error','Internal server error');
         return res.redirect('back');
     }
 }

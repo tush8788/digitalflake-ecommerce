@@ -5,6 +5,7 @@ const EmailForgotPassword = require('../mailer/forgotPasswordMailer');
 
 //create session
 module.exports.createSession =async function(req,res){
+    req.flash('success','Signin successfully');
     return res.redirect('/');
 }
 
@@ -16,7 +17,8 @@ module.exports.forgotPasswordLinkGen= async function(req,res){
         let admin = await AdminDB.findOne({email:email});
 
         if(!admin){
-            console.log("email not found");
+            req.flash('error','Email not found');
+            // console.log("email not found");
             return res.redirect('back');
         }
         
@@ -36,18 +38,20 @@ module.exports.forgotPasswordLinkGen= async function(req,res){
             await entry.updateOne({accessToken:accessToken,isValid:true});
         }
         else{
-            console.log("link already send to your mail");
+            req.flash('error','link already send to your mail');
+            // console.log("link already send to your mail");
             return res.redirect('/signin');
         }
         
         //send mail 
         EmailForgotPassword.fogotPasswordLinkMail(admin.email,accessToken);
-
-        console.log("Mail send successfully");
+        req.flash('success','Mail send successfully');
+        // console.log("Mail send successfully");
         return res.redirect('/signin');
     }
     catch(err){
         console.log(err);
+        req.flash('error','Internal server error');
         return res.redirect('back');
     }
 }
@@ -58,7 +62,7 @@ module.exports.resetPasswordPage =async function(req,res){
         let forgotPass = await ForgotPasswordDB.findOne({accessToken:req.query.token,isValid:true});
 
         if(!forgotPass){
-            console.log("invaild url");
+            req.flash('error','Invaild Url');
             return res.end('<h1>Invaild Url</h1>');
         }
 
@@ -72,6 +76,7 @@ module.exports.resetPasswordPage =async function(req,res){
     }
     catch(err){
         console.log(err);
+        req.flash('error','Internal server error');
         return res.redirect('/');
     }
 }
@@ -84,6 +89,7 @@ module.exports.updatePassword =async function(req,res){
         
         //check password and confirm password match
         if(password != confirmPassword){
+            req.flash('error','password and confirm password not match');
             console.log("password and confirm password not match");
             return res.redirect('back');
         }
@@ -92,7 +98,8 @@ module.exports.updatePassword =async function(req,res){
 
         //if entry not found then 
         if(!forgotPassEntry){
-            console.log("Unathorize to update password");
+            req.flash('error','Unathorize to update password');
+            // console.log("Unathorize to update password");
             return res.redirect('/forgot-password');
         }
 
@@ -101,11 +108,13 @@ module.exports.updatePassword =async function(req,res){
 
         //update forgot password
         await forgotPassEntry.updateOne({isValid:false});
-        console.log("password update successfully");
+        req.flash('success','password update successfully');
+        // console.log("password update successfully");
         return res.redirect('/signin');
     }
     catch(err){
         console.log(err);
+        req.flash('error','Internal server error');
         return res.redirect('back');
     }
 }

@@ -42,6 +42,7 @@ module.exports.signOut = function(req,res){
             console.log(err);
             return;
         }
+        req.flash('success','Signout successfully');
         return res.redirect('/signin');
     })
 }

@@ -7,7 +7,8 @@ module.exports.createAdmin =async function(req,res){
         
         //password and confirm password match
         if(password != confirmPassword){
-            console.log('password and confirm password not match');
+            req.flash('error',"password and confirm password not match");
+            // console.log('password and confirm password not match');
             return res.redirect('back');
         }
 
@@ -15,18 +16,21 @@ module.exports.createAdmin =async function(req,res){
 
         //check any entry already created in db then just back
         if(admin.length>0){
-            console.log('Admin already exist');
+            // console.log('Admin already exist');
+            req.flash('error',"Admin already exist");
             return res.redirect('/signin');
         }
 
         //create new admin
         admin = await AdminDB.create(req.body);
-        console.log("Admin create successfully");
+        req.flash('success','Admin create successfully')
+        // console.log("Admin create successfully");
         return res.redirect('/signin');
 
     }
     catch(err){
         console.log(err);
+        req.flash('error','Internal Server Error')
         return res.redirect('back');
     }
 }

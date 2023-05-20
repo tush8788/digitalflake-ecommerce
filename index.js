@@ -6,6 +6,8 @@ const passport = require('passport');
 const localStategy = require('./config/passport-local-stategy');
 const MongoStore = require('connect-mongo');
 const expressSession = require('express-session');
+const flash = require('connect-flash');
+const notification = require('./config/notification');
 const port = process.env.port|| 8000;
 
 const app = express();
@@ -43,6 +45,9 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+app.use(notification.setFlash);
 
 app.use('/',require('./routes/index.js'));
 

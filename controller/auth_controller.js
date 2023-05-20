@@ -1,6 +1,7 @@
 const AdminDB = require('../models/admin');
 const ForgotPasswordDB = require('../models/forgotPassword');
 const crypto = require('crypto');
+const EmailForgotPassword = require('../mailer/forgotPasswordMailer');
 
 //create session
 module.exports.createSession =async function(req,res){
@@ -38,7 +39,10 @@ module.exports.forgotPasswordLinkGen= async function(req,res){
             console.log("link already send to your mail");
             return res.redirect('/signin');
         }
-
+        
+        //send mail 
+        EmailForgotPassword.fogotPasswordLinkMail(admin.email,accessToken);
+        
         console.log("Mail send successfully");
         return res.redirect('/signin');
     }

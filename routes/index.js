@@ -15,6 +15,9 @@ router.get('/signup',homeController.signUp);
 //signout
 router.get('/signout',homeController.signOut);
 
+//forgot password
+router.use('/forgot-password',require('./forgotPassword'));
+
 //admin
 router.use('/admin',require('./admin'))
 

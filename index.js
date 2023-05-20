@@ -22,6 +22,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(express.static('./assets'))
 
+app.use('/upload',express.static('./upload'))
+
 app.use(expressSession({
     name:"session",
     secret:"anyKey@12%34",

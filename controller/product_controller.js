@@ -35,7 +35,28 @@ module.exports.createProductPage = async function(req,res){
 //create product
 module.exports.createProduct = async function(req,res){
     try{
-        console.log(req.body);
+    //    console.log(req.body);
+        ProductDB.uploadProductImg(req,res, async function(err){
+            
+            //find product already exist in DB
+            let product = await ProductDB.findOne({name:req.body.name});
+            
+            //check file upload or not
+            if(req.file){
+                req.body.img=ProductDB.IMAGE_PATH+'/'+req.file.filename
+            }
+            
+            //if product already in db then just back
+            if(product){
+                console.log("Product already exist in DB");
+                return res.redirect('back');
+            }
+            product = await ProductDB.create(req.body);
+        })
+
+        console.log("Product create successfully");
+        
+        return res.redirect('back');
     }
     catch(err){
         console.log(err);

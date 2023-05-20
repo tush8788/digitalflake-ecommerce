@@ -15,4 +15,5 @@ router.post('/create',passport.checkAuthenticationUser,productController.createP
 //delete product 
 router.get('/delete',passport.checkAuthenticationUser,productController.deleteProduct);
 
+router.get('/update-status',passport.checkAuthenticationUser,productController.updateProductStaus);
 module.exports = router;

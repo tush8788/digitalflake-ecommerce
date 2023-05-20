@@ -99,3 +99,26 @@ module.exports.deleteProduct = async function(req,res){
         return res.redirect('back');
     }
 }
+
+//update product
+module.exports.updateProductStaus = async function(req,res){
+    try{
+        // console.log(req.query);
+        let {id,status}=req.query;
+
+        if(status=="Active"){
+            status="Inactive";
+        }
+        else{
+            status="Active";
+        }
+
+        await ProductDB.findByIdAndUpdate(id,{status:status});
+        console.log('Product status update');
+        return res.redirect('back');
+    }
+    catch(err){
+        console.log(err);
+        return res.redirect('back');
+    }
+}

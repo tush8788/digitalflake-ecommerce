@@ -30,7 +30,7 @@ app.use(expressSession({
     saveUninitialized:false,
     resave:false,
     cookie:{
-        maxAge:10000*60
+        maxAge:10000*60*10
     },
     store:MongoStore.create({
         mongoUrl:process.env.MONGO_URL||'mongodb://localhost/ecommerce-digitalflake',

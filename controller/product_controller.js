@@ -1,5 +1,7 @@
 const ProductDB = require('../models/product');
 const CategoryDB = require('../models/category');
+const fs = require('fs');
+const path = require('path');
 
 //product show
 module.exports.showProduct = async function(req,res){
@@ -56,6 +58,40 @@ module.exports.createProduct = async function(req,res){
 
         console.log("Product create successfully");
         
+        return res.redirect('back');
+    }
+    catch(err){
+        console.log(err);
+        return res.redirect('back');
+    }
+}
+
+//delete product 
+module.exports.deleteProduct = async function(req,res){
+    try{
+        // console.log(req.query);
+        let {id}=req.query;
+
+        let product = await ProductDB.findById(id);
+        
+        //if product not found
+        if(!product){
+            console.log('product not found in DB');
+            return res.redirect('back');
+        }
+
+        //delete img file
+        if(product.img){
+            //check given location file exist or not
+            if(fs.existsSync(path.join(__dirname,'..',product.img))){
+                //delete file
+                fs.unlinkSync(path.join(__dirname,'..',product.img)); 
+            }
+        }
+        //delete product
+        await product.deleteOne();
+        
+        console.log("Product delete successfully");
         return res.redirect('back');
     }
     catch(err){

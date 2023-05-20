@@ -9,6 +9,10 @@ router.get('/',passport.checkAuthenticationUser,productController.showProduct);
 //create product page
 router.get('/create',passport.checkAuthenticationUser,productController.createProductPage);
 
+//create product
 router.post('/create',passport.checkAuthenticationUser,productController.createProduct);
+
+//delete product 
+router.get('/delete',passport.checkAuthenticationUser,productController.deleteProduct);
 
 module.exports = router;

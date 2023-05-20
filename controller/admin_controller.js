@@ -31,7 +31,3 @@ module.exports.createAdmin =async function(req,res){
     }
 }
 
-//create session
-module.exports.createSession =async function(req,res){
-    return res.redirect('/');
-}

@@ -27,6 +27,14 @@ module.exports.signUp = function(req,res){
     })
 }
 
+//forgot password page
+module.exports.forgotPasswordPage = function(req,res){
+    return res.render('forgotpassword',{
+        title:"Forgot Password",
+        url:"/admin/forgot-password"
+    })
+}
+
 //signout
 module.exports.signOut = function(req,res){
     req.logout((err)=>{

@@ -16,7 +16,7 @@ router.get('/signup',homeController.signUp);
 router.get('/signout',homeController.signOut);
 
 //forgot password
-router.use('/forgot-password',require('./forgotPassword'));
+router.get('/forgot-password',homeController.forgotPasswordPage);
 
 //admin
 router.use('/admin',require('./admin'))

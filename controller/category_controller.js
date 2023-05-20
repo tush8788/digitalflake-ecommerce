@@ -1,7 +1,7 @@
 const CategoryDB = require('../models/category');
 
 //category list page
-module.exports.showCategoryList = async function(req,res){
+module.exports.showCategory = async function(req,res){
     try{
         let categorise = await CategoryDB.find({});
         return res.render('products/showCategory',{

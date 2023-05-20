@@ -24,4 +24,7 @@ router.use('/admin',require('./admin'))
 //category
 router.use('/category',require('./category'));
 
+//product
+router.use('/product',require('./product'));
+
 module.exports = router;

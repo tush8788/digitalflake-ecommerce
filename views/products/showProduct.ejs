@@ -1,0 +1,17 @@
+<div>
+    all products
+</div>
+<div>
+    <% for(product of products){%>
+        <ul>
+            <li>name: <%=product.name%></li>
+            <li>Package Size: <%=product.size%></li>
+            <li>Category: <%=product.category%></li>
+            <li>Mrp: <%=product.mrp%></li>
+            <li>img: <%=product.img%></li>
+            <li>status: <%=product.status%></li>
+            <li><a href="/product/delete?id=<%=product._id%>">X</a></li>
+            <li><a href="/product/update-status?id=<%=product._id%>&status=<%=product.status%>">update status</a></li>
+        </ul>
+    <%}%>
+</div>

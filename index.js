@@ -16,6 +16,8 @@ app.use(expressLayout);
 
 app.use(bodyParser.urlencoded({extended:false}));
 
+app.use(express.static('./assets'))
+
 app.use('/',require('./routes/index.js'));
 
 app.listen(port,(err)=>{

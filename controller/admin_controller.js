@@ -1,8 +1,9 @@
+const AdminDB = require('../models/admin');
 
-//create admin
+//create admin [for future use]
 module.exports.createAdmin =async function(req,res){
     try{
-
+        
     }
     catch(err){
 

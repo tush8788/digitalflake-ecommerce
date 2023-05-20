@@ -32,7 +32,7 @@ app.use(expressSession({
     },
     store:MongoStore.create({
         mongoUrl:process.env.MONGO_URL||'mongodb://localhost/ecommerce-digitalflake',
-        autoRemove:false
+        autoRemove:true
     },function(err){
         console.log(err || "connect");
     })

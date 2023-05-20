@@ -8,4 +8,7 @@ router.get('/',passport.checkAuthenticationUser,categoryController.showCategoryL
 //create category page
 router.get('/create',passport.checkAuthenticationUser,categoryController.createCategoryPage);
 
+//create 
+router.post('/create',passport.checkAuthenticationUser,categoryController.create);
+
 module.exports = router;

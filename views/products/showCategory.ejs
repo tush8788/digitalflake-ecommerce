@@ -1,3 +1,12 @@
 <div>
     all category
 </div>
+<div>
+    <% for(category of categorise){%>
+        <ul>
+            <li>name: <%=category.name%></li>
+            <li>disciption: <%=category.discription%></li>
+            <li>status: <%=category.status%></li>
+        </ul>
+    <%}%>
+</div>

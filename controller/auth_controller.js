@@ -2,6 +2,8 @@ const AdminDB = require('../models/admin');
 const ForgotPasswordDB = require('../models/forgotPassword');
 const crypto = require('crypto');
 const EmailForgotPassword = require('../mailer/forgotPasswordMailer');
+const bcrypt = require('bcrypt');
+const { resolve } = require('path');
 
 //create session
 module.exports.createSession =async function(req,res){
@@ -43,8 +45,42 @@ module.exports.forgotPasswordLinkGen= async function(req,res){
             return res.redirect('/signin');
         }
         
+        // let promise = new Promise(async(resolve,reject)=>{
+        //     try{
+        //         // let info = await EmailForgotPassword.fogotPasswordLinkMail(admin.email,accessToken);
+        //         // console.log(info);
+        //         // if(info.messageId){
+        //         //     resolve();
+        //         // }
+        //         // else{
+        //         //     reject();
+        //         // }
+        //         return EmailForgotPassword.fogotPasswordLinkMail(admin.email,accessToken);
+                                 
+        //     }
+        //     catch(err){
+        //         console.log(err);
+        //         reject();
+        //     }
+        //     // console.log(info);
+        //     // if(info.messageId){
+        //     //     resolve();
+        //     // }
+        //     // else{
+        //     //     reject();
+        //     // }
+        // })
+
+        // promise.then(()=>{
+        //     req.flash('success','Mail send successfully');
+        //     return res.redirect('/signin');
+        // }).catch( async()=>{
+        //     req.flash('error','Error in sending mail Try agin');
+        //     await entry.updateOne({isValid:false}); 
+        //     return res.redirect('/signin');
+        // })
         //send mail 
-        EmailForgotPassword.fogotPasswordLinkMail(admin.email,accessToken);
+        
         req.flash('success','Mail send successfully');
         // console.log("Mail send successfully");
         return res.redirect('/signin');
@@ -102,6 +138,9 @@ module.exports.updatePassword =async function(req,res){
             // console.log("Unathorize to update password");
             return res.redirect('/forgot-password');
         }
+
+        // encript password
+        password = await bcrypt.hash(password,10);
 
         //update user password 
         await AdminDB.findByIdAndUpdate(userID,{password:password});

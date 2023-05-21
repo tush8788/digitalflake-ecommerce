@@ -13,5 +13,6 @@ exports.fogotPasswordLinkMail=(email,accessToken)=>{
             return;
         }
         console.log("mail send ",info);
+        return info;
     })
 }

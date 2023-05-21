@@ -1,6 +1,7 @@
 const passport = require('passport');
 const localStategy = require('passport-local').Strategy;
 const AdminDB = require('../models/admin');
+const bcrypt = require('bcrypt');
 
 passport.use(new localStategy({
     usernameField:'email',
@@ -9,7 +10,7 @@ passport.use(new localStategy({
     try{
         let admin = await AdminDB.findOne({email:email});
 
-        if(!admin || admin.password != password){
+        if(!admin || !await bcrypt.compare(password,admin.password)){
             req.flash('error',"invaild email or password");
             // console.log("invaild email or password")
             return done(null,false);

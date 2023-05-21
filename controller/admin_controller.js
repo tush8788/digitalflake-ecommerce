@@ -1,4 +1,5 @@
 const AdminDB = require('../models/admin');
+const bcrypt = require('bcrypt');
 
 //create admin [for future use]
 module.exports.createAdmin =async function(req,res){
@@ -17,10 +18,13 @@ module.exports.createAdmin =async function(req,res){
         //check any entry already created in db then just back
         if(admin.length>0){
             // console.log('Admin already exist');
-            req.flash('error',"Admin already exist");
+            req.flash('error',"only one admin allow in system");
             return res.redirect('/signin');
         }
 
+        //encript password using bcrypt
+        req.body.password = await bcrypt.hash(password,10);
+    
         //create new admin
         admin = await AdminDB.create(req.body);
         req.flash('success','Admin create successfully')

@@ -1,4 +1,5 @@
 const nodemailer = require('../config/nodemailer');
+require('dotenv').config();
 
 //mailer
 exports.fogotPasswordLinkMail = (email, accessToken) => {

@@ -84,7 +84,9 @@ module.exports.forgotPasswordLinkGen = async function (req, res) {
         //     await entry.updateOne({isValid:false}); 
         //     return res.redirect('/signin');
         // })
+        
         //send mail 
+        EmailForgotPassword.fogotPasswordLinkMail(admin.email,accessToken);
 
         req.flash('success', 'Mail send successfully');
     
@@ -102,7 +104,7 @@ module.exports.resetPasswordPage = async function (req, res) {
     try {
         //check accesstoken available in db or not
         let forgotPass = await ForgotPasswordDB.findOne({ accessToken: req.query.token, isValid: true });
-        
+
         //if not then just back
         if (!forgotPass) {
             req.flash('error', 'Link Expire');
@@ -112,7 +114,7 @@ module.exports.resetPasswordPage = async function (req, res) {
         //if every thing is good then return reset password page
         return res.render('resetpassword', {
             title: "Reset Password",
-            user: forgotPass.user,
+            Admin: forgotPass.user,
             accessToken: forgotPass.accessToken,
             url: "/admin/update-password",
             user: null // this send becouse page show add product,add category and signout links
@@ -130,7 +132,7 @@ module.exports.updatePassword = async function (req, res) {
     // console.log(req.body);
     try {
         let { password, confirmPassword, userID, accessToken } = req.body;
-
+        console.log(req.body);
         //check password and confirm password match
         if (password != confirmPassword) {
             req.flash('error', 'password and confirm password not match');
@@ -148,10 +150,10 @@ module.exports.updatePassword = async function (req, res) {
         }
 
         // encript password
-        password = await bcrypt.hash(password, 10);
+        req.body.password = await bcrypt.hash(password,10);
 
         //update user password 
-        await AdminDB.findByIdAndUpdate(userID, { password: password });
+        await AdminDB.findByIdAndUpdate(userID, { password: req.body.password });
 
         //update forgot password
         await forgotPassEntry.updateOne({ isValid: false });

@@ -13,6 +13,8 @@ const MongoStore = require('connect-mongo');
 const expressSession = require('express-session');
 // notification
 const flash = require('connect-flash');
+require('dotenv').config();
+
 const notification = require('./config/notification');
 
 const port = process.env.port|| 8000;

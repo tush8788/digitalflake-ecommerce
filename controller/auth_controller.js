@@ -107,7 +107,8 @@ module.exports.resetPasswordPage =async function(req,res){
             title:"Reset Password",
             user:forgotPass.user,
             accessToken:forgotPass.accessToken,
-            url:"/admin/update-password"
+            url:"/admin/update-password",
+            user:null // this send becouse page show add product and add category and signout
         })
     }
     catch(err){

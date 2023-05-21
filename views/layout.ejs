@@ -16,23 +16,27 @@
 <body>
     <%-include('_header')%>
     <div id="mainContainer" style="display: flex;">
+        <!-- check user login -->
+        <%if(locals.user){%>
         <aside>
-            <ul class="nav nav-tabs flex-column">
-                <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="/">Home</a>
+            <ul class="nav nav-tabs flex-column whiteColor">
+                <li class="nav-item whiteColor">
+                  <a class="nav-link whiteColor" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/product/">Products</a>
+                  <a class="nav-link whiteColor" href="/product/">Products</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/category/">Categoris</a>
+                <li class="nav-item ">
+                  <a class="nav-link whiteColor" href="/category/">Categoris</a>
                 </li>
               </ul>
         </aside>
-
         <div id="bodyContainer">
             <%-body%>
         </div>
+        <%} else{%>
+            <%-body%>
+        <%}%>
 
     </div>
     <%-script%>

@@ -9,7 +9,7 @@
 #mainContainer aside{
     width: 20%; 
     height: 90vh; 
-    background-color: aqua;
+    background-color: gray;
 }
 
 #bodyContainer{
@@ -17,5 +17,10 @@
     height: 90vh;
     overflow:auto;
     /* overflow-x: auto; */
-    background-color: yellow;
+    background-color: whitesmoke;
+}
+
+/* commen css */
+.whiteColor{
+    color: white;
 }

@@ -9,10 +9,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- own style -->
     <%-style%>
+    <!-- layout style -->
+    <link rel="stylesheet" href="/css/layout.css">
+    
 </head>
 <body>
     <%-include('_header')%>
-    <%-body%>
+    <div id="mainContainer" style="display: flex;">
+        <aside>
+            <ul class="nav nav-tabs flex-column">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/product/">Products</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/category/">Categoris</a>
+                </li>
+              </ul>
+        </aside>
+
+        <div id="bodyContainer">
+            <%-body%>
+        </div>
+
+    </div>
     <%-script%>
 
      <!-- notification noty -->

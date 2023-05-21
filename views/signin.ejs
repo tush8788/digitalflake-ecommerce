@@ -1,4 +1,21 @@
 <link rel="stylesheet" href="/css/login.css">
+<style>
+    .form-container{
+        height: auto;
+    }
+    .forgot-container{
+        width: 90%;
+        margin: 5%;
+        display: flex;
+        justify-content: space-between;
+        /* background-color: aqua; */
+    }
+    .forgot-container>a{
+        font-size: large;
+        text-decoration: none;
+        letter-spacing: 0.5px;
+    }
+</style>
 <!-- sign in -->
 <div class="container">
     <div class="row">
@@ -10,7 +27,10 @@
                     <input type="password" class="form-control" name="password" placeholder="password" required><br><br>
                     <input type="submit" id="btnSubmit" class="btn btn-dark btn-outline-warning" value="signin">
                 </form>
-                <div><a href="/forgot-password" class="">Forgot Password</a></div>
+                <div class="forgot-container">
+                    <a href="/forgot-password" class="">Forgot Password</a>
+                    <a href="/signup" class="">Signup</a>
+                </div>
             </div>
         </div>
     </div>

@@ -27,4 +27,7 @@ router.use('/category',require('./category'));
 //product
 router.use('/product',require('./product'));
 
+//v1
+router.use('/v1',require('./v1/index'));
+
 module.exports = router;

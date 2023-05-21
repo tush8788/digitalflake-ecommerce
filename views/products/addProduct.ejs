@@ -7,19 +7,19 @@
                 <center><h3 class="heading">Add Product</h3></center><br>
                 <form method="post" url="/product/create" enctype="multipart/form-data" class="row g-3">
                   <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label">Name</label>
-                    <input type="text" name="name" class="borderNone form-control" id="inputEmail4" required>
+                    <label for="inputEmail4" class="form-label"></label>
+                    <input type="text" name="name" class="borderNone form-control" id="inputEmail4" placeholder="Product name" required>
                   </div>
                   <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Package Size</label>
-                    <input type="text" name="size" class="borderNone form-control" id="inputPassword4" required>
+                    <label for="inputPassword4" class="form-label"></label>
+                    <input type="text" name="size" class="borderNone form-control" placeholder="Package size" id="inputPassword4" required>
                   </div>
                   <div class="col-md-6">
-                      <label for="inputEmail4" class="form-label">MRP</label>
-                      <input type="number" min="1" name="mrp" class="borderNone form-control" id="inputEmail4" required>
+                      <label for="inputEmail4" class="form-label"></label>
+                      <input type="number" min="1" name="mrp" placeholder="MRP" class="borderNone form-control" id="inputEmail4" required>
                     </div>
                     <div class="col-md-6">
-                      <label for="inputPassword4" class="form-label">Category</label>
+                      <label for="inputPassword4" class="form-label"></label>
                           <select class="borderNone form-select" name="category" aria-label="Default select example" required>
                               <% for(let category of categorise){%>
                                   <option value="<%=category.name%>"><%=category.name%></option>
@@ -27,11 +27,11 @@
                           </select> 
                     </div>
                     <div class="col-md-6">
-                      <label for="inputPassword4" class="form-label">Product Image</label>
+                      <label for="inputPassword4" class="form-label"></label>
                       <input type="file" name="img" class="borderNone form-control" id="inputPassword4" required>
                     </div>
                       <div class="col-md-6">
-                        <label for="inputPassword4" class="form-label">Status</label>
+                        <label for="inputPassword4" class="form-label"></label>
                             <select class="borderNone form-select" name="status" aria-label="Default select example" required>
                               <option value="Active">Active</option>
                               <option value="Active">Inactive</option>

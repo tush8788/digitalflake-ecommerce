@@ -15,10 +15,9 @@ module.exports.createAdmin =async function(req,res){
 
         let admin = await AdminDB.find({});
 
-        //check any entry already created in db then just back
+        //check any entry already created in db then just back only one admin in db 
         if(admin.length>0){
-            // console.log('Admin already exist');
-            req.flash('error',"only one admin allow in system");
+            req.flash('error',"Only one admin allow in system");
             return res.redirect('/signin');
         }
 
@@ -27,10 +26,11 @@ module.exports.createAdmin =async function(req,res){
     
         //create new admin
         admin = await AdminDB.create(req.body);
+        
+        // notification
         req.flash('success','Admin create successfully')
-        // console.log("Admin create successfully");
-        return res.redirect('/signin');
 
+        return res.redirect('/signin');
     }
     catch(err){
         console.log(err);

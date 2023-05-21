@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const multer = require('multer');
 const path = require('path');
+// path to store img of product
 const IMAGE_PATH = path.join('/upload/product');
-
+// product schema
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -44,8 +45,9 @@ const storage = multer.diskStorage({
 })
 
 //create static functions
-productSchema.statics.uploadProductImg = multer({storage:storage}).single('img');
-
+// store img at given postion
+productSchema.statics.uploadProductImg = multer({ storage: storage }).single('img');
+// img path
 productSchema.statics.IMAGE_PATH = IMAGE_PATH;
 
 const Product = mongoose.model('Product', productSchema);

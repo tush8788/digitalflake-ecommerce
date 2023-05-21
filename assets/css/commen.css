@@ -1,4 +1,4 @@
-.col-12{
+.col-12 {
     height: 400px;
     width: 100%;
     display: flex;
@@ -6,7 +6,8 @@
     justify-content: center;
     margin-top: 40px;
 }
-.form-container{
+
+.form-container {
     border-radius: 10px;
     background-color: white;
     box-shadow: 0px 0px 18px 6px lightgray;
@@ -17,22 +18,23 @@
     align-items: center;
 }
 
-.heading{
+.heading {
     font-size: 2rem;
     font-weight: 700;
 }
 
-.form-container>form{
+.form-container>form {
     width: 90%;
 }
-.form-container>form>input{
+
+.form-container>form>input {
     border-radius: 0;
     border: none;
     border-bottom: 2px solid gray;
     color: gray;
 }
 
-#btnSubmit{
+#btnSubmit {
     color: white;
     border-radius: 20px;
     width: 100%;

@@ -14,10 +14,12 @@
     
 </head>
 <body>
+    <!-- include header -->
     <%-include('_header')%>
     <div id="mainContainer" style="display: flex;">
         <!-- check user login -->
         <%if(locals.user){%>
+          <!-- aside -->
         <aside>
             <ul class="nav nav-tabs flex-column whiteColor">
                 <li class="nav-item whiteColor">
@@ -31,6 +33,7 @@
                 </li>
               </ul>
         </aside>
+        <!-- main body -->
         <div id="bodyContainer">
             <%-body%>
         </div>

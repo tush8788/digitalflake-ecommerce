@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/product.css">
+
 <!-- add product -->
 <div class="container">
     <div class="row">
@@ -45,47 +46,3 @@
         </div>
     </div>
 </div>
-
-
-<!-- <div>
-    <div>
-        <div>
-            <form method="post" url="/product/create" enctype="multipart/form-data" class="row g-3">
-                <div class="col-md-6">
-                  <label for="inputEmail4" class="form-label">Name</label>
-                  <input type="text" name="name" class="form-control" id="inputEmail4" required>
-                </div>
-                <div class="col-md-6">
-                  <label for="inputPassword4" class="form-label">Package Size</label>
-                  <input type="text" name="size" class="form-control" id="inputPassword4" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label">MRP</label>
-                    <input type="number" min="1" name="mrp" class="form-control" id="inputEmail4" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Category</label>
-                        <select class="form-select" name="category" aria-label="Default select example" required>
-                            <% for(let category of categorise){%>
-                                <option value="<%=category.name%>"><%=category.name%></option>
-                            <%}%>
-                        </select> 
-                  </div>
-                  <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Product Image</label>
-                    <input type="file" name="img" class="form-control" id="inputPassword4" required>
-                  </div>
-                    <div class="col-md-6">
-                      <label for="inputPassword4" class="form-label">Status</label>
-                          <select class="form-select" name="status" aria-label="Default select example" required>
-                            <option value="Active">Active</option>
-                            <option value="Active">Inactive</option>
-                        </select> 
-                    </div>
-                <div class="col-12">
-                  <button type="submit" class="btn btn-primary">Add Product</button>
-                </div>
-              </form>
-        </div>
-    </div>
-</div> -->

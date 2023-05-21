@@ -4,6 +4,7 @@ const expressLayout = require('express-ejs-layouts');
 const db = require('./config/mongoose');
 const passport = require('passport');
 const localStategy = require('./config/passport-local-stategy');
+const jwtStrategy = require('./config/passport-jwt-strategy');
 const MongoStore = require('connect-mongo');
 const expressSession = require('express-session');
 const flash = require('connect-flash');

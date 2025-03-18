@@ -11,8 +11,8 @@ let transporter = nodemailer.createTransport({
     port: 587,
     secure: false, // two factor auth 
     auth: {
-        user: process.env.email, //||'programming.tushar@gmail.com', // generated ethereal user
-        pass: process.env.password //||  'hmdxlfqkuugsnwiw', // generated ethereal password
+        user: process.env.email,
+        pass: process.env.password
     },
 });
 
